@@ -34,8 +34,8 @@ export const ProductTable = ({ data, page }) => {
                     <TableHead>Image</TableHead>
                     <TableHead>Name</TableHead>
                     <TableHead>Price</TableHead>
-                    <TableHead>Stock</TableHead>
-                    <TableHead>Orders</TableHead>
+                    <TableHead className="text-center">Stock</TableHead>
+                    <TableHead className="text-center">Orders</TableHead>
                     <TableHead>Status</TableHead>
                     <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
@@ -78,8 +78,8 @@ export const ProductTable = ({ data, page }) => {
                                 </div>
                             )}
                         </TableCell>
-                        <TableCell>{product?.stock}</TableCell>
-                        <TableCell>{product?.orders ?? 0}</TableCell>
+                        <TableCell className="text-center">{product?.stock}</TableCell>
+                        <TableCell className="text-center">{product?.orders ?? 0}</TableCell>
                         <TableCell>
                             {
                                 (product?.stock - (product?.orders ?? 0)) > 0

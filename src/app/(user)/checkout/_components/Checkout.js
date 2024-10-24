@@ -98,9 +98,9 @@ export default function Checkout({ products }) {
                                         }
                                     </TableCell>
                                     <TableCell>{item?.product?.name}</TableCell>
-                                    <TableCell>₹ {item?.product?.salePrice}</TableCell>
+                                    <TableCell className="whitespace-nowrap">₹ {item?.product?.salePrice}</TableCell>
                                     <TableCell className="text-center">{item?.quantity}</TableCell>
-                                    <TableCell className="text-green-600">₹ {item?.quantity * item?.product?.salePrice}</TableCell>
+                                    <TableCell className="text-green-600 whitespace-nowrap">₹ {item?.quantity * item?.product?.salePrice}</TableCell>
                                     <TableCell className="text-right">
                                         <ConfirmRemove handleClick={handleRemoveFromCart} product={item?.product} >
                                             <Button variant="destructive" size="sm" disabled={isLoading} onClick={() => setCurrentProduct(item?.product)}>

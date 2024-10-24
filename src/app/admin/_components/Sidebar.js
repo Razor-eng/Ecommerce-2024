@@ -95,7 +95,7 @@ export default function Sidebar() {
                                                 return (
                                                     <Link href={item.link} key={id}>
                                                         <li className={cn(
-                                                            "flex items-center gap-2 px-10 py-3 rounded-lg font-semibold text-lg text-zinc-500 hover:bg-zinc-200 transition",
+                                                            "flex items-center gap-2 px-12 py-3 rounded-lg font-semibold text-lg text-zinc-500 hover:bg-zinc-200 transition",
                                                             isActive && "bg-zinc-300 font-semibold text-zinc-900 hover:bg-zinc-300"
                                                         )}
                                                         >
@@ -105,6 +105,13 @@ export default function Sidebar() {
                                                 )
                                             })}
                                         </ul>
+                                    </div>
+                                    <div className="md:hidden">
+                                        <Link href={'/dashboard'}>
+                                            <Button className="w-full text-lg" size="lg">
+                                                Store
+                                            </Button>
+                                        </Link>
                                     </div>
                                 </div>
                             </SheetContent>
