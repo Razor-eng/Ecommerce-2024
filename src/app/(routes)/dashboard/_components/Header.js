@@ -22,8 +22,8 @@ export default function Header() {
     const { data } = useUser({ uid: user?.uid });
     const HeaderItems = [
         { title: "Home", href: "/dashboard", icon: <Home /> },
-        { title: "About", href: "/about", icon: <Store /> },
-        { title: "Contact", href: "/contact", icon: <Contact /> },
+        // { title: "About", href: "/about", icon: <Store /> },
+        // { title: "Contact", href: "/contact", icon: <Contact /> },
         { title: "Favorites", href: "/favorites", icon: <FolderHeart /> },
         { title: "Cart", href: "/cart", icon: <ShoppingBag /> },
     ]
@@ -68,7 +68,7 @@ export default function Header() {
                         <Logo />
                     </Link>
                 </div>
-                <nav className="hidden items-center gap-4 text-sm font-medium md:flex">
+                {/* <nav className="hidden items-center gap-4 text-sm font-medium md:flex">
                     {HeaderItems.map((item, id) => {
                         const isActive = pathname === item.href;
                         if (id < 3) {
@@ -87,8 +87,8 @@ export default function Header() {
                             return null;
                         }
                     })}
-                </nav>
-                <div className="flex items-center gap-2">
+                </nav> */}
+                <div className="flex items-center gap-1 md:gap-2">
                     {isAdmin ?
                         <div className="mr-3">
                             <Link href={'/admin'}>
@@ -102,10 +102,16 @@ export default function Header() {
                     }
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" className="rounded-full">
-                                <SearchIcon className="h-6 w-6 text-gray-500 dark:text-gray-400" />
-                                <span className="sr-only">Search</span>
-                            </Button>
+                            <>
+                                <Button variant="ghost" className="hidden md:block rounded-full">
+                                    <SearchIcon className="size-5 text-gray-500 dark:text-gray-400" />
+                                    <span className="sr-only">Search</span>
+                                </Button>
+                                <Button variant="secondary" className="md:hidden">
+                                    <SearchIcon className="size-5 text-gray-500 dark:text-gray-400" />
+                                    <span className="sr-only">Search</span>
+                                </Button>
+                            </>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className="w-[300px] p-4">
                             <div className="relative">
@@ -137,7 +143,6 @@ export default function Header() {
                         <Button
                             size="lg"
                             variant="outline"
-                            className="hidden lg:flex"
                             asChild
                         >
                             <Link href={`${pathname}/sign-in`}>
