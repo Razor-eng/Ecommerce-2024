@@ -45,22 +45,35 @@ export default function Header() {
                                 <SheetTitle>Navbar</SheetTitle>
                                 <SheetDescription>Navbar</SheetDescription>
                             </SheetHeader>
-                            <div className="flex flex-col gap-4 mt-8">
-                                {HeaderItems.map((item, id) => {
-                                    const isActive = pathname === item.href;
-                                    return (
-                                        <Button key={id} asChild variant={cn(isActive ? "secondary" : "ghost")} size="lg" className="text-xl font-medium w-full flex justify-start">
-                                            <Link
-                                                href={item.href}
-                                                className="text-gray-500 hover:text-gray-900 px-2 text-[15px] dark:text-gray-400 dark:hover:text-gray-50 flex gap-3"
-                                                prefetch={false}
-                                            >
-                                                {item.icon}
-                                                {item.title}
-                                            </Link>
-                                        </Button>
-                                    )
-                                })}
+                            <div className="flex flex-col h-full justify-between my-8">
+                                <div className="flex flex-col gap-4 flex-1">
+                                    {HeaderItems.map((item, id) => {
+                                        const isActive = pathname === item.href;
+                                        return (
+                                            <Button key={id} asChild variant={cn(isActive ? "secondary" : "ghost")} size="lg" className="text-xl font-medium w-full flex justify-start">
+                                                <Link
+                                                    href={item.href}
+                                                    className="text-gray-500 hover:text-gray-900 px-2 text-[15px] dark:text-gray-400 dark:hover:text-gray-50 flex gap-3"
+                                                    prefetch={false}
+                                                >
+                                                    {item.icon}
+                                                    {item.title}
+                                                </Link>
+                                            </Button>
+                                        )
+                                    })}
+                                </div>
+                                <div className="md:hidden mb-8">
+                                    {isAdmin ?
+                                        <Link href={'/admin'}>
+                                            <Button className="w-full text-lg" size="lg">
+                                                Admin
+                                            </Button>
+                                        </Link>
+                                        :
+                                        null
+                                    }
+                                </div>
                             </div>
                         </SheetContent>
                     </Sheet>
