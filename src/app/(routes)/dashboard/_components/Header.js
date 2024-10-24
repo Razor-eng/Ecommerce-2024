@@ -89,29 +89,39 @@ export default function Header() {
                     })}
                 </nav> */}
                 <div className="flex items-center gap-1 md:gap-2">
-                    {isAdmin ?
-                        <div className="mr-3">
-                            <Link href={'/admin'}>
-                                <Button className="w-28">
-                                    Admin
-                                </Button>
-                            </Link>
-                        </div>
-                        :
-                        null
-                    }
+                    <div className="hidden md:block">
+                        {isAdmin ?
+                            <div className="mr-3">
+                                <Link href={'/admin'}>
+                                    <Button className="w-28">
+                                        Admin
+                                    </Button>
+                                </Link>
+                            </div>
+                            :
+                            null
+                        }
+                    </div>
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                            <>
-                                <Button variant="ghost" className="hidden md:block rounded-full">
-                                    <SearchIcon className="size-5 text-gray-500 dark:text-gray-400" />
-                                    <span className="sr-only">Search</span>
-                                </Button>
-                                <Button variant="secondary" className="md:hidden">
-                                    <SearchIcon className="size-5 text-gray-500 dark:text-gray-400" />
-                                    <span className="sr-only">Search</span>
-                                </Button>
-                            </>
+                            <Button variant="secondary" className="md:hidden">
+                                <SearchIcon className="size-5 text-gray-500 dark:text-gray-400" />
+                                <span className="sr-only">Search</span>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="w-[300px] p-4">
+                            <div className="relative">
+                                <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
+                                <Input type="search" placeholder="Search..." className="pl-8 w-full" />
+                            </div>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" className="hidden md:block rounded-full">
+                                <SearchIcon className="size-5 text-gray-500 dark:text-gray-400" />
+                                <span className="sr-only">Search</span>
+                            </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className="w-[300px] p-4">
                             <div className="relative">
