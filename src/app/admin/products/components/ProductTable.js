@@ -45,7 +45,7 @@ export const ProductTable = ({ data, page }) => {
                     <TableRow key={id}>
                         <TableCell className="font-medium">{id + 1 + page}</TableCell>
                         <TableCell>
-                            {(product?.featureImageURL) ?
+                            {product ?
                                 <Image
                                     src={product.featureImageURL}
                                     alt="Image"

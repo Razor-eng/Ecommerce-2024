@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from '@/lib/utils';
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 export default function ProductImage({ imageList }) {
     const [selectedImage, setSelectedImage] = useState(imageList[0]);

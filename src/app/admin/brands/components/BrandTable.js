@@ -41,7 +41,7 @@ const BrandTable = ({ data }) => {
                     <TableRow key={id}>
                         <TableCell className="font-medium">{id + 1}</TableCell>
                         <TableCell>
-                            {brand?.imageURL ?
+                            {brand ?
                                 <Image
                                     src={brand?.imageURL}
                                     alt="Image"

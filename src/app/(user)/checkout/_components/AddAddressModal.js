@@ -31,7 +31,7 @@ export const AddAddressModal = () => {
 
     function isAdded() {
         let isExists = false;
-        userData?.location.map((item) => {
+        userData?.location?.map((item) => {
             if ((item?.address === data?.address) && (item?.state === data?.state)) {
                 isExists = true;
             }

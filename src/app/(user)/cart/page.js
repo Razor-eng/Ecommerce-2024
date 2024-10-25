@@ -43,13 +43,18 @@ export default function CartPage() {
                         ))}
                     </div>
                 }
-                <DottedSeparator className={"my-2"} />
             </div>
-            <Link href={"/checkout?type=cart"} className="w-full">
-                <Button size="lg" variant="teritary" className="w-full" disabled={dataLoading}>
-                    Checkout
-                </Button>
-            </Link>
+            {!(!data?.cart || data?.cart?.length === 0) ?
+                <div className="flex flex-col w-full gap-3">
+                    <DottedSeparator className={"my-2"} />
+                    <Link href={"/checkout"} className="w-full">
+                        <Button size="lg" variant="teritary" className="w-full" disabled={dataLoading}>
+                            Checkout
+                        </Button>
+                    </Link>
+                </div>
+                : null
+            }
         </main>
     )
 }

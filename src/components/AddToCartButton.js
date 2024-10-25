@@ -1,6 +1,6 @@
 'use client';
 
-import { PackagePlus, Plus, ShoppingCart } from "lucide-react";
+import { PackagePlus, PackageX, Plus, ShoppingCart } from "lucide-react";
 import { Button } from "./ui/button";
 import toast from "react-hot-toast";
 import { updateCart } from "@/lib/firestore/user/write";
@@ -9,6 +9,7 @@ import { useUser } from "@/lib/firestore/user/read";
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+import { useProduct } from "@/lib/firestore/products/read";
 
 export default function AddToCartButton({ productId, size, variant = "teritary" }) {
     const { user } = useAuth();
@@ -16,8 +17,10 @@ export default function AddToCartButton({ productId, size, variant = "teritary" 
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
     const pathname = usePathname();
+    const { data: product } = useProduct({ productId: productId });
 
     const isAdded = data?.cart?.find((item) => item?.id === productId);
+    const isAvailable = product?.stock > 0;
 
     const handleCart = async () => {
         setIsLoading(true);
@@ -46,26 +49,42 @@ export default function AddToCartButton({ productId, size, variant = "teritary" 
 
     return (
         <>
-            {isAdded ?
-                <Link href={"/cart"}>
+            {
+                isAvailable ? (
+                    <>
+                        {isAdded ?
+                            <Link href={"/cart"}>
+                                <Button
+                                    variant={"outline"}
+                                    size={size}
+                                    disabled={isLoading}
+                                >
+                                    <ShoppingCart /> <span className='hidden md:block'>View Cart</span>
+                                </Button>
+                            </Link>
+                            :
+                            <Button
+                                variant={variant}
+                                size={size}
+                                onClick={handleCart}
+                                disabled={isLoading}
+                            >
+                                <PackagePlus className='hidden md:block' /> <span className='hidden md:block'>Add To Cart</span>
+                                <Plus className="md:hidden" />
+                            </Button>
+                        }
+                    </>
+                ) : (
                     <Button
-                        variant={"outline"}
+                        variant={"destructive"}
                         size={size}
-                        disabled={isLoading}
+                        onClick={handleCart}
+                        className="text-sm"
+                        disabled
                     >
-                        <ShoppingCart /> <span className='hidden md:block'>View Cart</span>
+                        <PackageX /> <span className='hidden md:block'>Out Of Stock</span>
                     </Button>
-                </Link>
-                :
-                <Button
-                    variant={variant}
-                    size={size}
-                    onClick={handleCart}
-                    disabled={isLoading}
-                >
-                    <PackagePlus className='hidden md:block' /> <span className='hidden md:block'>Add To Cart</span>
-                    <Plus className="md:hidden" />
-                </Button>
+                )
             }
         </>
     )

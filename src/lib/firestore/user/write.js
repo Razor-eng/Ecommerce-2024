@@ -1,6 +1,24 @@
 import { db } from "@/lib/firebase"
 import { doc, setDoc, Timestamp } from "firebase/firestore"
 
+export const createUser = async ({ uid, user }) => {
+    await setDoc(doc(db, `users/${uid}`), {
+        ...user,
+        createdAt: Timestamp.now()
+    }, {
+        merge: true
+    });
+}
+
+export const updateUserExpense = async ({ uid, expense, products }) => {
+    await setDoc(doc(db, `users/${uid}`), {
+        expense: expense,
+        products: products
+    }, {
+        merge: true
+    });
+}
+
 export const updateFavorites = async ({ list, uid }) => {
     await setDoc(
         doc(db, `users/${uid}`),

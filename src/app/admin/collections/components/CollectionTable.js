@@ -41,7 +41,7 @@ export const CollectionTable = ({ data }) => {
                     <TableRow key={id}>
                         <TableCell className="font-medium">{id + 1}</TableCell>
                         <TableCell>
-                            {collection?.imageURL ?
+                            {collection ?
                                 <Image
                                     src={collection?.imageURL}
                                     alt="Image"

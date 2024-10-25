@@ -14,6 +14,8 @@ import { updateCart } from '@/lib/firestore/user/write';
 import { ConfirmRemove } from '@/components/ConfirmRemove';
 import { useAuth } from '@/context/AuthContext';
 import { useUser } from '@/lib/firestore/user/read';
+import { createCheckoutAndGetURL, createCheckoutCODAndGetId } from '@/lib/firestore/checkout/write';
+import { useRouter } from 'next/navigation';
 
 export default function Checkout({ products }) {
     const [paymentMode, setPaymentMode] = useState(null);
@@ -22,6 +24,7 @@ export default function Checkout({ products }) {
     const { user } = useAuth();
     const { data } = useUser({ uid: user?.uid });
     const [currentProduct, setCurrentProduct] = useState(null);
+    const router = useRouter();
 
     const totalPrice = products?.reduce((prev, curr) => {
         return prev + curr?.quantity * curr?.product?.salePrice;
@@ -52,9 +55,37 @@ export default function Checkout({ products }) {
             if (totalPrice <= 0) {
                 throw new Error("Price cannot be 0");
             }
-            await new Promise((res) => setTimeout(res, 2000));
-            toast.success("Order Placed Successfully");
-            confetti();
+
+            if (!products || products?.length === 0) {
+                throw new Error("No products found on cart");
+            }
+
+            if (paymentMode === "prepaid") {
+                const url = await createCheckoutAndGetURL({
+                    uid: user?.uid,
+                    products: products,
+                    address: selectedAddress,
+                    totalAmount: totalPrice,
+                    totalProducts: totalQuantity
+                });
+
+                toast.success("Order Placed Successfully");
+                confetti();
+                router.push(url);
+            } else {
+                const checkoutId = await createCheckoutCODAndGetId({
+                    uid: user?.uid,
+                    products: products,
+                    address: selectedAddress,
+                    totalAmount: totalPrice,
+                    totalProducts: totalQuantity
+                });
+
+                toast.success("Order Placed Successfully");
+                confetti();
+                router.push(`/checkout-cod/${checkoutId}`);
+            }
+
         } catch (error) {
             toast.error(error?.message);
         } finally {
@@ -177,7 +208,7 @@ export default function Checkout({ products }) {
                                 <Button variant="outline" disabled={paymentMode === "cod"} onClick={() => setPaymentMode("cod")}>
                                     <Wallet2 /> Cash On Delivery
                                 </Button>
-                                <Button variant="teritary" disabled={paymentMode === "online"} onClick={() => setPaymentMode("online")}>
+                                <Button variant="teritary" disabled={paymentMode === "prepaid"} onClick={() => setPaymentMode("prepaid")}>
                                     <TabletSmartphone /> Online Payment
                                 </Button>
                             </div>

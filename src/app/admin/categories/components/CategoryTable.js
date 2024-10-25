@@ -41,7 +41,7 @@ const CategoryTable = ({ data }) => {
                     <TableRow key={id}>
                         <TableCell className="font-medium">{id + 1}</TableCell>
                         <TableCell>
-                            {category?.imageURL ?
+                            {category ?
                                 <Image
                                     src={category?.imageURL}
                                     alt="Image"

@@ -45,7 +45,7 @@ export function useProduct({ productId }) {
                 (snapshot) =>
                     next(
                         null,
-                        snapshot.data()
+                        snapshot.exists() ? snapshot.data() : null
                     ),
                 (err) => next(err, null)
             );
@@ -55,15 +55,38 @@ export function useProduct({ productId }) {
     return { data: data, error, isLoading: data === undefined };
 }
 
-export function useProductsByIds({ idsList }) {
+// export function useProductsByIds({ idsList }) {
+//     const { data, error } = useSWRSubscription(
+//         ["products", idsList],
+//         ([path, idsList], { next }) => {
+//             const ref = collection(db, path);
+//             let q = query(ref, where("id", "in", idsList));
+
+//             const unsub = onSnapshot(
+//                 q,
+//                 (snapshot) =>
+//                     next(
+//                         null,
+//                         snapshot.docs.length === 0
+//                             ? []
+//                             : snapshot.docs.map((snap) => snap.data()),
+//                     ),
+//                 (err) => next(err)
+//             );
+//             return () => unsub();
+//         });
+
+//     return { data: data, error, isLoading: data === undefined };
+// }
+
+export function useAllProducts() {
     const { data, error } = useSWRSubscription(
-        ["products", idsList],
-        ([path, idsList], { next }) => {
+        ["products"],
+        ([path], { next }) => {
             const ref = collection(db, path);
-            let q = query(ref, where("id", "in", idsList));
 
             const unsub = onSnapshot(
-                q,
+                ref,
                 (snapshot) =>
                     next(
                         null,

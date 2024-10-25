@@ -1,7 +1,7 @@
 "use client";
 
 import { db } from "@/lib/firebase";
-import { doc, onSnapshot } from "firebase/firestore";
+import { collection, doc, onSnapshot } from "firebase/firestore";
 import useSWRSubscription from "swr/subscription";
 
 export function useUser({ uid }) {
@@ -17,6 +17,28 @@ export function useUser({ uid }) {
                         snapshot.exists()
                             ? snapshot.data()
                             : null
+                    ),
+                (err) => next(err)
+            );
+            return () => unsub();
+        });
+
+    return { data, error, isLoading: data === undefined };
+}
+
+export function useUsers() {
+    const { data, error } = useSWRSubscription(
+        ["users"],
+        ([path], { next }) => {
+            const ref = collection(db, path);
+            const unsub = onSnapshot(
+                ref,
+                (snapshot) =>
+                    next(
+                        null,
+                        snapshot.docs.length === 0
+                            ? null
+                            : snapshot.docs.map((snap) => snap.data())
                     ),
                 (err) => next(err)
             );

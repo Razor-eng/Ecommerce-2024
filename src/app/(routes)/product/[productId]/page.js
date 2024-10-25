@@ -2,9 +2,9 @@ import { getProduct } from "@/lib/firestore/products/read_server";
 import ProductImage from "./_components/ProductImage";
 import ProductDetails from "./_components/ProductDetails";
 import DottedSeparator from "@/components/DottedSeparator";
-import ProductReview from "./_components/ProductReview";
 import { Separator } from "@/components/ui/separator";
 import ProductRelated from "./_components/ProductRelated";
+import ProductReview from "./_components/ProductReview";
 
 
 const ProductPage = async ({ params }) => {
@@ -19,7 +19,7 @@ const ProductPage = async ({ params }) => {
                 <ProductDetails product={product} />
             </section>
             <Separator className="md:my-6 my-3" />
-            {/* <ProductReview productId={productId} /> */}
+            <ProductReview productId={productId} />
             <ProductRelated categoryId={product?.categoryId} />
             <section></section>
         </main>

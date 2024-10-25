@@ -41,7 +41,7 @@ export const AdminTable = ({ data }) => {
                     <TableRow key={id}>
                         <TableCell className="font-medium">{id + 1}</TableCell>
                         <TableCell>
-                            {admin?.imageURL ?
+                            {admin ?
                                 <Avatar className="size-11">
                                     <AvatarImage src={admin?.imageURL} alt="avatar" />
                                     <AvatarFallback className="text-lg md:text-xl bg-sky-200 font-semibold">

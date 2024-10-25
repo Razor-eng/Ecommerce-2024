@@ -2,6 +2,7 @@
 
 import AddFavoriteButton from "@/components/AddFavoriteButton";
 import AddToCartButton from "@/components/AddToCartButton";
+import BuyNowButton from "@/components/BuyNowButton";
 import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
 import Link from "next/link";
@@ -30,11 +31,7 @@ export default function FeaturedProductSlider({ featuredProducts }) {
                                     </Link>
                                     <h1 className="md:text-sm text-xs text-zinc-600 max-w-96 line-clamp-2">{product?.description}</h1>
                                     <div className="flex justify-between md:justify-normal gap-4 mt-6">
-                                        <Link href={`/checkout?type=buynow&productId=${product?.id}`}>
-                                            <Button>
-                                                BUY NOW
-                                            </Button>
-                                        </Link>
+                                        <BuyNowButton productId={product?.id} />
                                         <div className="flex gap-2 md:gap-4">
                                             <AddToCartButton productId={product?.id} />
                                             <AddFavoriteButton productId={product?.id} />

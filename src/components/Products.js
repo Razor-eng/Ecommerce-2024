@@ -1,10 +1,9 @@
 import React from 'react'
-import { Button } from './ui/button'
-import { ShoppingCart } from 'lucide-react'
 import { Rating } from '@mui/material'
 import Link from 'next/link'
 import AddFavoriteButton from './AddFavoriteButton'
 import AddToCartButton from './AddToCartButton'
+import BuyNowButton from './BuyNowButton'
 
 export const ProductsGridView = ({ products }) => {
     return (
@@ -19,6 +18,10 @@ export const ProductsGridView = ({ products }) => {
             </div>
         </div>
     )
+}
+
+function randomIntFromInterval(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 export function ProductCard({ product }) {
@@ -44,10 +47,18 @@ export function ProductCard({ product }) {
                                         {product?.price}
                                     </span>
                                 </h2>
-                                <div className="flex gap-2 items-center">
-                                    <Rating size='small' name='product-rating' defaultValue={2.5} precision={0.5} readOnly />
-                                    <p className="text-xs font-semibold text-zinc-400">(10)</p>
-                                </div>
+                                {
+                                    product?.reviews > 0 ?
+                                        <div className="flex gap-2 items-center">
+                                            <Rating size='small' name='product-rating' defaultValue={product?.rating} precision={0.5} readOnly />
+                                            <p className="text-xs font-semibold text-zinc-400">({product?.reviews})</p>
+                                        </div>
+                                        :
+                                        <div className="flex gap-2 items-center">
+                                            <Rating size='small' name='product-rating' defaultValue={500 / randomIntFromInterval(100, 200)} precision={0.5} readOnly />
+                                            <p className="text-xs font-semibold text-zinc-400">({randomIntFromInterval(100, 200)})</p>
+                                        </div>
+                                }
                             </div>
                         </div>
                         <p className="text-xs text-zinc-500 line-clamp-2">
@@ -57,11 +68,7 @@ export function ProductCard({ product }) {
                 </Link>
             </div>
             <div className="flex items-center justify-between">
-                <Link href={`/checkout?type=buynow&productId=${product?.id}`}>
-                    <Button variant="teritary">
-                        Buy Now
-                    </Button>
-                </Link>
+                <BuyNowButton productId={product?.id} variant={"teritary"} />
                 <AddToCartButton productId={product?.id} variant='outline' />
             </div>
         </div>

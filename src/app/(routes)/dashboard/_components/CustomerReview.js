@@ -2,6 +2,10 @@ import { Rating } from '@mui/material'
 import React from 'react'
 
 export default function CustomerReview() {
+    function randomIntFromInterval(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
     const reviews = [
         { name: "Robert Pattinson", image: "https://resizing.flixster.com/AuqZrHQAgSUvBrcZkJjbFvMLJDk=/218x280/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/487714_v9_bb.jpg", rating: 4, message: "I got a pair of boots from this store and I’m very satisfied. They are high-quality and worth the money. The store also offered free shipping at that price so that’s a plus!" },
         { name: "Emma Stone", image: "https://resizing.flixster.com/tZCGqFwYwVrT9p8JBBu6JXEOSRE=/218x280/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/501536_v9_bb.jpg", rating: 3.5, message: "I recently purchased a product from this store, and I couldn’t be happier with my online shopping experience. Their website was user-friendly, making it easy to find the perfect item. The checkout process was smooth, and I received my order promptly. The product arrived in excellent condition, exactly as described on their website. I’m thrilled with the quality and will definitely shop from this again in the future. Highly recommended!" },
@@ -17,7 +21,7 @@ export default function CustomerReview() {
                             <img src={review.image} alt="reviewer" className='h-32 w-32 rounded-full object-cover' />
                             <div className="flex flex-col items-center justify-center">
                                 <h1 className='font-semibold'>{review?.name}</h1>
-                                <Rating size='small' name='customer-rating' defaultValue={review.rating ?? 5} precision={0.5} readOnly />
+                                <Rating size='small' name='customer-rating' defaultValue={500 / randomIntFromInterval(100, 200)} precision={0.5} readOnly />
                             </div>
                             <p className="text-sm text-zinc-500 line-clamp-2">{review.message}</p>
                         </div>

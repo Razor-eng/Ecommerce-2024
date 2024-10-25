@@ -1,11 +1,12 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import { useAuth } from "@/context/AuthContext";
 import { auth } from "@/lib/firebase";
 import { signOut } from "firebase/auth";
-import { Loader, LogOut } from "lucide-react";
+import { Loader, LogOut, Package } from "lucide-react";
+import Link from "next/link";
 import toast from "react-hot-toast";
 
 export function UserButton() {
@@ -64,10 +65,18 @@ export function UserButton() {
                         </p>
                     </div>
                     <Separator />
-                    <Button onClick={handleLogout} variant="outline" className="w-full">
-                        <LogOut className="size-5 mr-2" />
-                        Log out
-                    </Button>
+                    <div className="flex flex-col w-full gap-0.5">
+                        <Link href={'/orders'}>
+                            <Button variant="outline" className="w-full">
+                                <Package className="size-5 mr-2" />
+                                My Orders
+                            </Button>
+                        </Link>
+                        <Button onClick={handleLogout} variant="outline" className="w-full">
+                            <LogOut className="size-5 mr-2" />
+                            Log out
+                        </Button>
+                    </div>
                 </DropdownMenuLabel>
             </DropdownMenuContent>
         </DropdownMenu>
