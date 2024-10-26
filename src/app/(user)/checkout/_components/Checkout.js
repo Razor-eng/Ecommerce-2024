@@ -155,6 +155,7 @@ export default function Checkout({ products }) {
                                     <Button
                                         variant="teritary"
                                         size="sm"
+                                        disabled={!data?.location || data?.location?.length === 0}
                                     >
                                         {selectedAddress ? "Change Address" : "Select Address"}
                                     </Button>
@@ -179,15 +180,37 @@ export default function Checkout({ products }) {
                                 :
                                 <div className="flex flex-col items-center justify-center">
                                     <div className="size-24">
-                                        <Image
-                                            src='/no-location.png'
-                                            blurDataURL='/no-location.png'
-                                            height={1000}
-                                            width={1000}
-                                            priority={true}
-                                            alt="location" className='object-cover w-full h-full rounded-md' />
+                                        {
+                                            (!data?.location || data?.location?.length === 0) ?
+                                                <Image
+                                                    src='/add-address.png'
+                                                    blurDataURL='/add-address.png'
+                                                    height={1000}
+                                                    width={1000}
+                                                    priority={true}
+                                                    alt="location" className='object-cover w-full h-full rounded-md'
+                                                />
+                                                :
+                                                <>
+                                                    <Image
+                                                        src='/no-location.png'
+                                                        blurDataURL='/no-location.png'
+                                                        height={1000}
+                                                        width={1000}
+                                                        priority={true}
+                                                        alt="location" className='object-cover w-full h-full rounded-md'
+                                                    />
+                                                </>
+                                        }
                                     </div>
-                                    <h2 className='text-zinc-600 text-sm'>Please select an address</h2>
+                                    <h2 className='text-zinc-600 text-sm'>
+                                        {
+                                            (!data?.location || data?.location?.length === 0) ?
+                                                "Please add an address"
+                                                :
+                                                "Please select an address"
+                                        }
+                                    </h2>
                                 </div>
                             }
                         </div>
