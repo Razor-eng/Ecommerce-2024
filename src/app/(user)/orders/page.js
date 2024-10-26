@@ -4,6 +4,7 @@ import Loader from '@/components/Loader';
 import OrderCard from '@/components/OrderCard';
 import { useAuth } from '@/context/AuthContext'
 import { useOrders } from '@/lib/firestore/orders/read';
+import Image from 'next/image';
 
 const UserOrdersPage = () => {
     const { user } = useAuth();
@@ -23,7 +24,13 @@ const UserOrdersPage = () => {
             {(!orders || orders?.length === 0) && (
                 <div className="flex flex-col items-center justify-center h-full">
                     <div className="flex justify-center">
-                        <img src="/empty-cart.png" alt="image" className='h-44' />
+                        <Image
+                            src="/empty-cart.png"
+                            blurDataURL="/empty-cart.png"
+                            height={1000}
+                            width={1000}
+                            priority={true}
+                            alt="image" className='h-44' />
                     </div>
                     <h1 className='text-zinc-600 text-xl font-semibold'>You have no orders yet</h1>
                 </div>

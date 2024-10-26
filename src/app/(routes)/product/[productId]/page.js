@@ -12,7 +12,7 @@ const ProductPage = async ({ params }) => {
     const product = await getProduct({ id: productId });
 
     return (
-        <main className="p-2 md:p-10">
+        <main className="md:p-10">
             <section className="flex gap-3 flex-col md:flex-row">
                 <ProductImage imageList={[product?.featureImageURL, ...(product?.imageList ?? [])]} />
                 <DottedSeparator className={"my-4 md:hidden"} />
@@ -21,7 +21,6 @@ const ProductPage = async ({ params }) => {
             <Separator className="md:my-6 my-3" />
             <ProductReview productId={productId} />
             <ProductRelated categoryId={product?.categoryId} />
-            <section></section>
         </main>
     )
 }

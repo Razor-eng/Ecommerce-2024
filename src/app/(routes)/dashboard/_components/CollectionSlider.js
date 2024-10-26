@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Slider from "react-slick";
@@ -70,10 +71,14 @@ export default function CollectionSlider({ collections }) {
                                         </Link>
                                     </div>
                                     <div>
-                                        <img
+                                        <Image
                                             className="h-[5rem] md:h-[9rem]"
-                                            src={collection?.imageURL}
                                             alt="collection"
+                                            src={collection?.imageURL}
+                                            blurDataURL={collection?.imageURL}
+                                            height={1000}
+                                            width={1000}
+                                            priority={true}
                                         />
                                     </div>
                                 </div>
@@ -99,10 +104,14 @@ export default function CollectionSlider({ collections }) {
                                         </Link>
                                     </div>
                                     <div>
-                                        <img
+                                        <Image
                                             className="h-[5rem] md:h-[9rem]"
                                             src={collection?.imageURL}
+                                            blurDataURL={collection?.imageURL}
                                             alt="collection"
+                                            height={1000}
+                                            width={1000}
+                                            priority={true}
                                         />
                                     </div>
                                 </div>

@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Eye } from 'lucide-react'
@@ -46,7 +48,7 @@ export const OrdersTable = ({ data, page }) => {
                     const orderedUser = order?.metadata;
                     const paymentMode = order?.paymentMode;
                     const status = order?.status;
-                    const user = useUser({ uid: orderedUser?.uid })
+                    const user = useUser({ uid: orderedUser?.uid });
 
                     return (
                         <TableRow key={id}>

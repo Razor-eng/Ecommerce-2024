@@ -45,6 +45,7 @@ const BrandTable = ({ data }) => {
                                 <Image
                                     src={brand?.imageURL}
                                     alt="Image"
+                                    priority={true}
                                     height={100}
                                     width={100}
                                     className="object-cover h-8 w-14"

@@ -3,8 +3,7 @@
 import AddFavoriteButton from "@/components/AddFavoriteButton";
 import AddToCartButton from "@/components/AddToCartButton";
 import BuyNowButton from "@/components/BuyNowButton";
-import { Button } from "@/components/ui/button";
-import { Heart } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Slider from "react-slick";
@@ -26,7 +25,7 @@ export default function FeaturedProductSlider({ featuredProducts }) {
                             <div className="flex-1 flex flex-col gap-4 md:gap-10">
                                 <h2 className="text-zinc-500 text-sm md:text-base">NEW FASHION</h2>
                                 <div className="flex flex-col gap-3 md:gap-4">
-                                    <Link href={`/product/${product?.id}`}>
+                                    <Link href={`/product/${product?.id}`} prefetch={false}>
                                         <h1 className="md:text-4xl text-xl font-semibold">{product?.name}</h1>
                                     </Link>
                                     <h1 className="md:text-sm text-xs text-zinc-600 max-w-96 line-clamp-2">{product?.description}</h1>
@@ -40,10 +39,14 @@ export default function FeaturedProductSlider({ featuredProducts }) {
                                 </div>
                             </div>
                             <Link href={`/product/${product?.id}`}>
-                                <img
-                                    className="h-[15rem] w-full md:h-[23rem] rounded-md"
+                                <Image
+                                    className="h-[23rem] w-full rounded-md"
+                                    height={1000}
+                                    width={1000}
                                     src={product?.featureImageURL}
                                     alt="image"
+                                    priority={true}
+                                    blurDataURL={product?.featureImageURL}
                                 />
                             </Link>
                         </div>

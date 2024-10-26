@@ -1,9 +1,9 @@
-import React from 'react'
-import { Rating } from '@mui/material'
 import Link from 'next/link'
 import AddFavoriteButton from './AddFavoriteButton'
 import AddToCartButton from './AddToCartButton'
 import BuyNowButton from './BuyNowButton'
+import Ratings from './Ratings';
+import Image from 'next/image';
 
 export const ProductsGridView = ({ products }) => {
     return (
@@ -20,21 +20,25 @@ export const ProductsGridView = ({ products }) => {
     )
 }
 
-function randomIntFromInterval(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
 export function ProductCard({ product }) {
     return (
         <div className="flex flex-col justify-between gap-3 border p-2 md:p-4 rounded-lg group">
             <div className="flex flex-col gap-3">
                 <div className="relative">
-                    <img src={product?.featureImageURL} alt="image" className="rounded-md w-full h-52 object-cover" />
+                    <Image
+                        src={product?.featureImageURL}
+                        alt="image"
+                        className="rounded-md w-full h-52 object-cover"
+                        width={1000}
+                        height={1000}
+                        priority={true}
+                        blurDataURL={product?.featureImageURL}
+                    />
                     <div className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition">
                         <AddFavoriteButton productId={product?.id} />
                     </div>
                 </div>
-                <Link href={`/product/${product?.id}`}>
+                <Link prefetch={false} href={`/product/${product?.id}`}>
                     <div className="flex flex-col gap-2">
                         <div className="flex flex-col gap-1">
                             <h1 className="font-bold line-clamp-2 text-sm">
@@ -47,18 +51,7 @@ export function ProductCard({ product }) {
                                         {product?.price}
                                     </span>
                                 </h2>
-                                {
-                                    product?.reviews > 0 ?
-                                        <div className="flex gap-2 items-center">
-                                            <Rating size='small' name='product-rating' defaultValue={product?.rating} precision={0.5} readOnly />
-                                            <p className="text-xs font-semibold text-zinc-400">({product?.reviews})</p>
-                                        </div>
-                                        :
-                                        <div className="flex gap-2 items-center">
-                                            <Rating size='small' name='product-rating' defaultValue={500 / randomIntFromInterval(100, 200)} precision={0.5} readOnly />
-                                            <p className="text-xs font-semibold text-zinc-400">({randomIntFromInterval(100, 200)})</p>
-                                        </div>
-                                }
+                                <Ratings productId={product?.id} size={"small"} />
                             </div>
                         </div>
                         <p className="text-xs text-zinc-500 line-clamp-2">

@@ -26,12 +26,12 @@ export default async function Home() {
 
   return (
     <main className="flex flex-col gap-6">
-      <FeaturedProductSlider featuredProducts={featuredProducts} />
-      <CollectionSlider collections={collections} />
-      <CategorySlider categories={categories} />
-      <ProductsGridView products={products} />
+      <FeaturedProductSlider featuredProducts={JSON.parse(JSON.stringify(featuredProducts))} />
+      <CollectionSlider collections={JSON.parse(JSON.stringify(collections))} />
+      <CategorySlider categories={JSON.parse(JSON.stringify(categories))} />
+      <ProductsGridView products={JSON.parse(JSON.stringify(products))} />
       <CustomerReview />
-      <BrandSlider brands={brands} />
+      <BrandSlider brands={JSON.parse(JSON.stringify(brands))} />
     </main>
   );
 }

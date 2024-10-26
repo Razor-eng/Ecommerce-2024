@@ -93,14 +93,15 @@ export default function Sidebar() {
                                             {SidebarItems.map((item, id) => {
                                                 const isActive = pathname === item.link;
                                                 return (
-                                                    <Link href={item.link} key={id}>
-                                                        <li className={cn(
-                                                            "flex items-center gap-2 px-12 py-3 rounded-lg font-semibold text-lg text-zinc-500 hover:bg-zinc-200 transition",
+                                                    <Link
+                                                        key={id}
+                                                        href={item.link}
+                                                        className={cn(
+                                                            "flex items-center justify-start gap-2 w-full py-3 rounded-lg font-semibold text-lg text-zinc-500 hover:bg-zinc-200 transition pl-7",
                                                             isActive && "bg-zinc-300 font-semibold text-zinc-900 hover:bg-zinc-300"
                                                         )}
-                                                        >
-                                                            <item.Icon className="h-5 w-5" /> {item.title}
-                                                        </li>
+                                                    >
+                                                        <item.Icon className="h-5 w-5" /> {item.title}
                                                     </Link>
                                                 )
                                             })}

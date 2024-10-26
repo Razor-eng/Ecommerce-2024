@@ -4,19 +4,23 @@ import Loader from "@/components/Loader";
 import { useAuth } from "@/context/AuthContext";
 import { useAllProducts } from "@/lib/firestore/products/read";
 import { useUser } from "@/lib/firestore/user/read";
-import { AlertTriangle } from "lucide-react";
 import Checkout from "./_components/Checkout";
 import { AddAddressModal } from "./_components/AddAddressModal";
+import { redirect } from "next/navigation";
 
 export default function CheckoutPage() {
     const { user } = useAuth();
     const { data, isLoading } = useUser({ uid: user?.uid });
     const { data: products } = useAllProducts();
 
-    if (isLoading || !data?.cart || data?.cart?.length === 0) {
+    if (isLoading && (!data?.cart || data?.cart?.length === 0)) {
         return (
             <Loader />
         )
+    }
+
+    if (!isLoading && (!data?.cart || data?.cart?.length === 0)) {
+        redirect("/dashboard");
     }
 
     const productList = data?.cart?.map((item) => {

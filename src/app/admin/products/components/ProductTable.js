@@ -51,6 +51,8 @@ export const ProductTable = ({ data, page }) => {
                                     alt="Image"
                                     height={100}
                                     width={100}
+                                    blurDataURL='/orders.png'
+                                    priority={true}
                                     className="object-fill size-10"
                                 />
                                 :

@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 import { useState } from 'react'
 
 export default function ProductImage({ imageList }) {
@@ -11,7 +12,13 @@ export default function ProductImage({ imageList }) {
     return (
         <div className='flex flex-col gap-8 w-full'>
             <div className="flex justify-center w-full">
-                <img src={selectedImage} alt="image" className='md:h-[400px] h-[300px] object-cover shadow-md rounded-md' />
+                <Image
+                    height={1000}
+                    width={1000}
+                    priority={true}
+                    src={selectedImage}
+                    blurDataURL={selectedImage}
+                    alt="image" className='md:h-[400px] h-[300px] object-contain w-fit rounded-md' />
             </div>
             <div className="flex flex-wrap items-center justify-center gap-3">
                 {imageList?.map((image, id) => {
@@ -25,7 +32,15 @@ export default function ProductImage({ imageList }) {
                             )}
                             onClick={() => setSelectedImage(image)}
                         >
-                            <img src={image} alt="" className="object-cover" />
+                            <Image
+                                src={image}
+                                blurDataURL={image}
+                                height={1000}
+                                width={1000}
+                                priority={true}
+                                alt="image"
+                                className="object-cover"
+                            />
                         </div>
                     )
                 })}

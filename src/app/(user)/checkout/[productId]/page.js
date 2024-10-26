@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Loader from "@/components/Loader";
 import { useProduct } from "@/lib/firestore/products/read";

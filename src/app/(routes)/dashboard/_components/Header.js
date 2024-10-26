@@ -50,16 +50,17 @@ export default function Header() {
                                     {HeaderItems.map((item, id) => {
                                         const isActive = pathname === item.href;
                                         return (
-                                            <Button key={id} asChild variant={cn(isActive ? "secondary" : "ghost")} size="lg" className="text-xl font-medium w-full flex justify-start">
-                                                <Link
-                                                    href={item.href}
-                                                    className="text-gray-500 hover:text-gray-900 px-2 text-[15px] dark:text-gray-400 dark:hover:text-gray-50 flex gap-3"
-                                                    prefetch={false}
-                                                >
+                                            <Link
+                                                href={item.href}
+                                                className="text-gray-500 hover:text-gray-900 px-2 text-[15px] dark:text-gray-400 dark:hover:text-gray-50 flex gap-3"
+                                                prefetch={false}
+                                                key={id}
+                                            >
+                                                <Button variant={cn(isActive ? "secondary" : "ghost")} size="lg" className="text-xl font-medium w-full flex justify-start">
                                                     {item.icon}
                                                     {item.title}
-                                                </Link>
-                                            </Button>
+                                                </Button>
+                                            </Link>
                                         )
                                     })}
                                 </div>

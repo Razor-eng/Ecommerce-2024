@@ -24,8 +24,11 @@ const ImageUpload = ({ isPending, title, setImage, image, initialImage = null })
                         <Image
                             src={viewImage}
                             alt="Image"
-                            fill
+                            height={1000}
+                            width={1000}
                             className="object-cover"
+                            priority={true}
+                            blurDataURL="/orders.png"
                         />
                     </div>
                 ) : (
@@ -34,8 +37,11 @@ const ImageUpload = ({ isPending, title, setImage, image, initialImage = null })
                             <Image
                                 src={image ? URL.createObjectURL(image) : image}
                                 alt="Image"
-                                fill
+                                height={1000}
+                                width={1000}
                                 className="object-cover"
+                                priority={true}
+                                blurDataURL="/orders.png"
                             />
                         </div>
                     ) : (

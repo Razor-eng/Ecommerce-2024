@@ -45,6 +45,7 @@ export const CollectionTable = ({ data }) => {
                                 <Image
                                     src={collection?.imageURL}
                                     alt="Image"
+                                    priority={true}
                                     height={100}
                                     width={100}
                                     className="object-cover h-10 w-10"

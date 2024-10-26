@@ -1,4 +1,4 @@
-import { Rating } from '@mui/material'
+import Image from 'next/image'
 import DottedSeparator from './DottedSeparator'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from './ui/alert-dialog'
 
@@ -21,14 +21,17 @@ export const ConfirmRemove = ({
                 </AlertDialogHeader>
                 <div className="flex justify-between gap-2 md:gap-5">
                     <div className="size-32">
-                        <img src={product?.featureImageURL} alt="" className='h-full w-full object-cover rounded-md' />
+                        <Image
+                            src={product?.featureImageURL}
+                            blurDataURL={product?.featureImageURL}
+                            height={1000}
+                            width={1000}
+                            priority={true}
+                            alt="" className='h-full w-full object-cover rounded-md' />
                     </div>
                     <div className="flex-1 flex flex-col gap-1">
                         <div className="flex flex-col">
                             <h1 className="font-semibold text-lg line-clamp-2 leading-5">{product?.name}</h1>
-                            {product?.rating &&
-                                <Rating size='small' name='product-rating' defaultValue={product?.rating} precision={0.5} readOnly />
-                            }
                         </div>
                         <h2 className="text-green-600 font-semibold text-sm">
                             {product?.salePrice} <span className="text-zinc-500 line-through text-xs">{product?.price}</span>

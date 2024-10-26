@@ -13,6 +13,7 @@ import { useBrands } from '@/lib/firestore/brands/read';
 import { useCategories } from '@/lib/firestore/categories/read';
 import { updateProduct } from '@/lib/firestore/products/write';
 import { ImagePlus } from 'lucide-react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
 import toast from 'react-hot-toast';
@@ -237,20 +238,26 @@ export const EditProductModal = ({ children, initialData }) => {
                                         </Avatar>
                                         {imageList?.length === 0 && initialData?.imageList.map((image, id) => (
                                             <div key={id} className="size-[72px] border p-2 relative rounded-md overflow-hidden">
-                                                <img
+                                                <Image
                                                     src={image}
+                                                    blurDataURL={image}
+                                                    height={1000}
+                                                    width={1000}
+                                                    priority={true}
                                                     alt="Image"
-                                                    fill
                                                     className="object-cover"
                                                 />
                                             </div>
                                         ))}
                                         {imageList?.length > 0 && imageList?.map((image, id) => (
                                             <div key={id} className="size-[72px] border p-2 relative rounded-md overflow-hidden">
-                                                <img
+                                                <Image
                                                     src={image ? URL.createObjectURL(image) : image}
+                                                    blurDataURL={image ? URL.createObjectURL(image) : image}
+                                                    height={1000}
+                                                    width={1000}
+                                                    priority={true}
                                                     alt="Image"
-                                                    fill
                                                     className="object-cover"
                                                 />
                                             </div>

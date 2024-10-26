@@ -9,6 +9,7 @@ import { useProduct } from "@/lib/firestore/products/read";
 import { useUser } from "@/lib/firestore/user/read";
 import { updateCart } from "@/lib/firestore/user/write";
 import { Minus, Plus, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -30,7 +31,15 @@ export default function CartPage() {
                 {(!data?.cart || data?.cart?.length === 0) ? (
                     <div className="flex flex-col gap-5 justify-center items-center h-full w-full py-20">
                         <div className="flex justify-center">
-                            <img src="/empty-cart.png" alt="empty" className="h-[200px]" />
+                            <Image
+                                height={1000}
+                                width={1000}
+                                priority={true}
+                                src="/empty-cart.png"
+                                blurDataURL="/empty-cart.png"
+                                alt="empty"
+                                className="h-[200px] w-fit"
+                            />
                         </div>
                         <h1 className="text-zinc-600 font-semibold">
                             Please Add Products To Your Cart
@@ -47,7 +56,7 @@ export default function CartPage() {
             {!(!data?.cart || data?.cart?.length === 0) ?
                 <div className="flex flex-col w-full gap-3">
                     <DottedSeparator className={"my-2"} />
-                    <Link href={"/checkout"} className="w-full">
+                    <Link prefetch={false} href={"/checkout"} className="w-full">
                         <Button size="lg" variant="teritary" className="w-full" disabled={dataLoading}>
                             Checkout
                         </Button>
@@ -104,7 +113,15 @@ function ProductItem({ currentProduct }) {
         <div className="flex gap-3 flex-col border p-3 rounded-lg">
             <div className="flex-1 flex gap-3">
                 <div className="size-24 p-1">
-                    <img src={product?.featureImageURL} alt="image" className="w-full h-full object-cover rounded-md" />
+                    <Image
+                        src={product?.featureImageURL}
+                        blurDataURL={product?.featureImageURL}
+                        height={1000}
+                        width={1000}
+                        priority={true}
+                        alt="image"
+                        className="w-full h-full object-cover rounded-md"
+                    />
                 </div>
                 <div className="flex flex-col gap-1 w-full">
                     <div className="flex-1 flex flex-col">

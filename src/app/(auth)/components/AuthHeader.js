@@ -18,7 +18,7 @@ export default function AuthHeader() {
     if (!user && !isLoading) {
         return (
             <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6 border-b">
-                <Link href={"/dashboard"}>
+                <Link prefetch={false} href={"/dashboard"}>
                     <Logo />
                 </Link>
                 <div className="ml-auto hidden lg:flex gap-2">

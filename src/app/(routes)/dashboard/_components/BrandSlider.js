@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Slider from "react-slick";
@@ -56,7 +57,15 @@ export default function BrandSlider({ brands }) {
                             <Link key={id} href={"/"}>
                                 <div className="px-4">
                                     <div className="md:size-48 size-36 w-full rounded-lg p-2 md:p-5 border overflow-hidden bg-red-50">
-                                        <img className="h-full w-full object-contain" src={brand?.imageURL} alt="image" />
+                                        <Image
+                                            className="h-full w-full object-contain"
+                                            alt="image"
+                                            src={brand?.imageURL}
+                                            blurDataURL={brand?.imageURL}
+                                            height={1000}
+                                            width={1000}
+                                            priority={true}
+                                        />
                                     </div>
                                 </div>
                             </Link>
@@ -68,7 +77,15 @@ export default function BrandSlider({ brands }) {
                             <Link key={id} href={"/"}>
                                 <div className="px-4">
                                     <div className="md:size-48 size-36 w-full rounded-lg p-2 md:p-5 border overflow-hidden bg-red-50">
-                                        <img className="h-full w-full object-contain" src={brand?.imageURL} alt="image" />
+                                        <Image
+                                            className="h-full w-full object-contain"
+                                            alt="image"
+                                            src={brand?.imageURL}
+                                            blurDataURL={brand?.imageURL}
+                                            height={1000}
+                                            width={1000}
+                                            priority={true}
+                                        />
                                     </div>
                                 </div>
                             </Link>

@@ -5,6 +5,7 @@ import { ProductCard } from "@/components/Products";
 import { useAuth } from "@/context/AuthContext";
 import { useProduct } from "@/lib/firestore/products/read";
 import { useUser } from "@/lib/firestore/user/read";
+import Image from "next/image";
 
 export default function FavoritePage() {
     const { user } = useAuth();
@@ -22,7 +23,13 @@ export default function FavoritePage() {
             {(!data?.favorites || data?.favorites?.length === 0) ? (
                 <div className="flex flex-col gap-5 justify-center items-center h-full w-full py-20">
                     <div className="flex justify-center">
-                        <img src="/empty-favorites.png" alt="empty" className="h-[200px]" />
+                        <Image
+                            src="/empty-favorites.png"
+                            blurDataURL="/empty-favorites.png"
+                            height={1000}
+                            width={1000}
+                            priority={true}
+                            alt="empty" className="h-[200px]" />
                     </div>
                     <h1 className="text-zinc-600 font-semibold">
                         Please Add Products To Favorites

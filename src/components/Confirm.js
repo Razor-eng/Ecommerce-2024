@@ -21,7 +21,11 @@ const Confirm = ({
                 <DottedSeparator />
                 <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={() => handleClick(id)}>Continue</AlertDialogAction>
+                    {id ?
+                        <AlertDialogAction onClick={() => handleClick(id)}>Continue</AlertDialogAction>
+                        :
+                        <AlertDialogAction onClick={() => handleClick()}>Continue</AlertDialogAction>
+                    }
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>

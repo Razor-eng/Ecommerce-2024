@@ -143,7 +143,9 @@ const SignUpCard = ({ routePage }) => {
                     </form>
                     <Separator />
                     <Button disabled={isLoading} onClick={SignInWithGoogle} variant="teritary" className="w-full text-[15px] flex items-center gap-4" size="lg">
-                        <Image src="/google.png" alt="google logo" height={100} width={100} className="w-6" />
+                        <Image
+                            priority={true}
+                            src="/google.png" alt="google logo" height={100} width={100} className="w-6" />
                         Sign In with Google
                     </Button>
                 </div>

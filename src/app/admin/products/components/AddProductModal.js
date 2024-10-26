@@ -17,6 +17,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { useRouter } from 'next/navigation';
 import Description from '@/components/Description';
 import { createNewProduct } from '@/lib/firestore/products/write';
+import Image from 'next/image';
 
 export const AddProductModal = () => {
     const { data: brands } = useBrands();
@@ -232,10 +233,13 @@ export const AddProductModal = () => {
                                         </Avatar>
                                         {imageList?.length > 0 && imageList?.map((image, id) => (
                                             <div key={id} className="size-[72px] border p-2 relative rounded-md overflow-hidden">
-                                                <img
+                                                <Image
                                                     src={image ? URL.createObjectURL(image) : image}
+                                                    blurDataURL={image ? URL.createObjectURL(image) : image}
+                                                    height={1000}
+                                                    width={1000}
+                                                    priority={true}
                                                     alt="Image"
-                                                    fill
                                                     className="object-cover"
                                                 />
                                             </div>

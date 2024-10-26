@@ -6,6 +6,7 @@ import { getProduct } from "../products/read_server"
 import { updateProduct } from "../products/write"
 import { updateCart, updateUserExpense } from "../user/write"
 import { getUser } from "../user/read_server"
+import { useProduct } from "../products/read"
 
 async function updateCartAfterCheckout(data, totalAmount, totalProducts) {
     const user = await getUser({ id: data?.uid });
@@ -14,7 +15,8 @@ async function updateCartAfterCheckout(data, totalAmount, totalProducts) {
         const data = await getProduct({ id: productId });
         const updatedProduct = {
             ...data,
-            stock: data?.stock - item?.quantity
+            stock: data?.stock - item?.quantity,
+            orders: (data?.orders || 0) + item?.quantity
         }
         await updateProduct({ data: updatedProduct })
     })
@@ -28,7 +30,7 @@ export const createCheckoutAndGetURL = async ({ uid, products, address, totalAmo
 
     let line_items = [];
 
-    products.forEach((item) => {
+    products.forEach(async (item) => {
         line_items.push({
             product_data: {
                 name: item?.product?.name,
@@ -39,7 +41,7 @@ export const createCheckoutAndGetURL = async ({ uid, products, address, totalAmo
             },
             quantity: item?.quantity,
             totalAmount: item?.quantity * item?.product?.salePrice
-        })
+        });
     });
 
     await setDoc(ref, {

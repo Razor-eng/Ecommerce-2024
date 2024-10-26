@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Slider from "react-slick";
@@ -57,7 +58,14 @@ export default function CategorySlider({ categories }) {
                                 <div className="px-4">
                                     <div className="flex flex-col gap-2 items-center justify-center">
                                         <div className="md:h-32 md:w-32 h-24 w-24 rounded-full p-2 md:p-5 border overflow-hidden bg-blue-50">
-                                            <img src={category?.imageURL} alt="image" />
+                                            <Image
+                                                blurDataURL={category?.imageURL}
+                                                height={1000}
+                                                width={1000}
+                                                priority={true}
+                                                src={category?.imageURL}
+                                                alt="image"
+                                            />
                                         </div>
                                         <h1 className="font-semibold">{category?.name}</h1>
                                     </div>
@@ -72,7 +80,14 @@ export default function CategorySlider({ categories }) {
                                 <div className="px-4">
                                     <div className="flex flex-col gap-2 items-center justify-center">
                                         <div className="md:h-32 md:w-32 h-24 w-24 rounded-full p-2 md:p-5 border overflow-hidden bg-blue-50">
-                                            <img src={category?.imageURL} alt="image" />
+                                            <Image
+                                                src={category?.imageURL}
+                                                blurDataURL={category?.imageURL}
+                                                height={1000}
+                                                width={1000}
+                                                priority={true}
+                                                alt="image"
+                                            />
                                         </div>
                                         <h1 className="font-semibold">{category?.name}</h1>
                                     </div>

@@ -1,8 +1,11 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import Loader from '@/components/Loader'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { ViewReviewModal } from './ViewReviewModal'
+import { Button } from '@/components/ui/button'
+import { Eye } from 'lucide-react'
 
-export const CustomersTable = ({ data }) => {
+export const ReviewsTable = ({ data }) => {
     return (
         <Table>
             <TableHeader>
@@ -10,21 +13,21 @@ export const CustomersTable = ({ data }) => {
                     <TableHead className="w-[100px]">SNo.</TableHead>
                     <TableHead>Image</TableHead>
                     <TableHead>Name</TableHead>
-                    <TableHead>Email</TableHead>
-                    <TableHead className="text-center">Total Products</TableHead>
-                    <TableHead className="text-center">Total Expense</TableHead>
+                    <TableHead className="text-center">Review</TableHead>
+                    <TableHead className="text-center">Rating</TableHead>
+                    <TableHead className="text-center">Actions</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {data?.map((customer, id) => (
+                {data?.map((review, id) => (
                     <TableRow key={id}>
                         <TableCell className="font-medium">{id + 1}</TableCell>
                         <TableCell>
-                            {customer ?
+                            {review ?
                                 <Avatar className="size-11">
-                                    <AvatarImage src={customer?.photoURL} alt="avatar" />
+                                    <AvatarImage src={review?.photoURL} alt="avatar" />
                                     <AvatarFallback className="text-lg md:text-xl bg-blue-200 font-semibold">
-                                        {customer?.name?.charAt(0).toUpperCase()}
+                                        {review?.name?.charAt(0).toUpperCase()}
                                     </AvatarFallback>
                                 </Avatar>
                                 :
@@ -33,10 +36,16 @@ export const CustomersTable = ({ data }) => {
                                 </div>
                             }
                         </TableCell>
-                        <TableCell className="whitespace-nowrap">{customer?.name}</TableCell>
-                        <TableCell className="whitespace-nowrap">{customer?.email}</TableCell>
-                        <TableCell className="text-center">{customer?.products || 0}</TableCell>
-                        <TableCell className="text-center text-green-600">₹ {customer?.expense || 0}</TableCell>
+                        <TableCell className="whitespace-nowrap">{review?.name}</TableCell>
+                        <TableCell className="truncate max-w-28 md:max-w-48">{review?.review}</TableCell>
+                        <TableCell className="text-center">{review?.rating}</TableCell>
+                        <TableCell className="text-center">
+                            <ViewReviewModal review={review} children={
+                                <Button variant="outline" size="sm" disabled={false}>
+                                    <Eye />
+                                </Button>
+                            } />
+                        </TableCell>
                     </TableRow>
                 ))}
             </TableBody>

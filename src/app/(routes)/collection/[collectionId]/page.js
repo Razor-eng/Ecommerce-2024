@@ -1,6 +1,7 @@
 import { ProductCard } from "@/components/Products";
 import { getCollection } from "@/lib/firestore/collections/read_server";
 import { getProduct } from "@/lib/firestore/products/read_server";
+import Image from "next/image";
 
 const CollectionPage = async ({ params }) => {
     const { collectionId } = params;
@@ -10,7 +11,15 @@ const CollectionPage = async ({ params }) => {
         <div className="flex flex-col gap-4 md:gap-10 p-2 md:p-5">
             <div className="flex flex-col">
                 <div className="w-full flex justify-center">
-                    <img src={collection?.imageURL} alt="collection" className="h-[110px]" />
+                    <Image
+                        src={collection?.imageURL}
+                        alt="collection"
+                        className="h-[110px]"
+                        blurDataURL={collection?.imageURL}
+                        height={1000}
+                        width={1000}
+                        priority={true}
+                    />
                 </div>
                 <h2 className="text-2xl md:text-4xl font-semibold text-center">{collection?.name}</h2>
                 <h2 className="text-center text-zinc-500">{collection?.subTitle}</h2>

@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { useAllOrders } from '@/lib/firestore/orders/read';
 import { OrdersTable } from './OrdersTable';
 
-const pageLimit = 8;
+const pageLimit = 6;
 
 export default function ListView() {
     const [lastSnapDocList, setLastSnapDocList] = useState([]);

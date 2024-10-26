@@ -1,5 +1,3 @@
-'use client';
-
 import DottedSeparator from '@/components/DottedSeparator';
 import Loader from '@/components/Loader';
 import { Button } from '@/components/ui/button';
@@ -119,6 +117,7 @@ export default function Checkout({ products }) {
                                                 src={item?.product?.featureImageURL}
                                                 alt="Image"
                                                 height={100}
+                                                priority={true}
                                                 width={100}
                                                 className="object-cover rounded-md size-16"
                                             />
@@ -180,7 +179,13 @@ export default function Checkout({ products }) {
                                 :
                                 <div className="flex flex-col items-center justify-center">
                                     <div className="size-24">
-                                        <img src='/no-location.png' alt="location" className='object-cover w-full h-full rounded-md' />
+                                        <Image
+                                            src='/no-location.png'
+                                            blurDataURL='/no-location.png'
+                                            height={1000}
+                                            width={1000}
+                                            priority={true}
+                                            alt="location" className='object-cover w-full h-full rounded-md' />
                                     </div>
                                     <h2 className='text-zinc-600 text-sm'>Please select an address</h2>
                                 </div>

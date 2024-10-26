@@ -1,6 +1,7 @@
 import { useOrder } from "@/lib/firestore/orders/read";
 import { cn } from "@/lib/utils";
 import DottedSeparator from "@/components/DottedSeparator";
+import Image from "next/image";
 
 export default function OrderCard({ id, orderId }) {
     const { data: order } = useOrder({ id: orderId })
@@ -40,7 +41,13 @@ export default function OrderCard({ id, orderId }) {
             <div className="flex flex-col gap-3">
                 {order?.line_items?.map((product, id) => (
                     <div className="flex gap-2 items-center" key={id}>
-                        <img src={product?.product_data?.images[0]} alt="product Image" className='h-16 w-16 rounded-md' />
+                        <Image
+                            src={product?.product_data?.images[0]}
+                            blurDataURL={product?.product_data?.images[0]}
+                            height={1000}
+                            width={1000}
+                            priority={true}
+                            alt="product Image" className='h-16 w-16 rounded-md' />
                         <div className="flex flex-col gap-1">
                             <h1 className="whitespace-nowrap text-sm md:text-base">{product?.product_data?.name}</h1>
                             <p className="text-sm text-zinc-500 flex items-center">
