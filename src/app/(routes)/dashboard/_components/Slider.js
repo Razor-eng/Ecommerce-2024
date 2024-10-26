@@ -40,7 +40,7 @@ export default function FeaturedProductSlider({ featuredProducts }) {
                             </div>
                             <Link href={`/product/${product?.id}`}>
                                 <Image
-                                    className="h-[23rem] w-full rounded-md"
+                                    className="h-[23rem] w-[23rem] rounded-md"
                                     height={1000}
                                     width={1000}
                                     src={product?.featureImageURL}

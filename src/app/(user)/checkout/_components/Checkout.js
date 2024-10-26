@@ -20,7 +20,7 @@ export default function Checkout({ products }) {
     const [selectedAddress, setSelectedAddress] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const { user } = useAuth();
-    const { data } = useUser({ uid: user?.uid });
+    const { data, isLoading: isDataLoading } = useUser({ uid: user?.uid });
     const [currentProduct, setCurrentProduct] = useState(null);
     const router = useRouter();
 
@@ -179,38 +179,44 @@ export default function Checkout({ products }) {
                                 </div>
                                 :
                                 <div className="flex flex-col items-center justify-center">
-                                    <div className="size-24">
-                                        {
-                                            (!data?.location || data?.location?.length === 0) ?
-                                                <Image
-                                                    src='/add-address.png'
-                                                    blurDataURL='/add-address.png'
-                                                    height={1000}
-                                                    width={1000}
-                                                    priority={true}
-                                                    alt="location" className='object-cover w-full h-full rounded-md'
-                                                />
-                                                :
-                                                <>
-                                                    <Image
-                                                        src='/no-location.png'
-                                                        blurDataURL='/no-location.png'
-                                                        height={1000}
-                                                        width={1000}
-                                                        priority={true}
-                                                        alt="location" className='object-cover w-full h-full rounded-md'
-                                                    />
-                                                </>
-                                        }
-                                    </div>
-                                    <h2 className='text-zinc-600 text-sm'>
-                                        {
-                                            (!data?.location || data?.location?.length === 0) ?
-                                                "Please add an address"
-                                                :
-                                                "Please select an address"
-                                        }
-                                    </h2>
+                                    {isDataLoading ?
+                                        <Loader />
+                                        :
+                                        <>
+                                            <div className="size-24">
+                                                {
+                                                    (!data?.location || data?.location?.length === 0) ?
+                                                        <Image
+                                                            src='/add-address.png'
+                                                            blurDataURL='/add-address.png'
+                                                            height={1000}
+                                                            width={1000}
+                                                            priority={true}
+                                                            alt="location" className='object-cover w-full h-full rounded-md'
+                                                        />
+                                                        :
+                                                        <>
+                                                            <Image
+                                                                src='/no-location.png'
+                                                                blurDataURL='/no-location.png'
+                                                                height={1000}
+                                                                width={1000}
+                                                                priority={true}
+                                                                alt="location" className='object-cover w-full h-full rounded-md'
+                                                            />
+                                                        </>
+                                                }
+                                            </div>
+                                            <h2 className='text-zinc-600 text-sm'>
+                                                {
+                                                    (!data?.location || data?.location?.length === 0) ?
+                                                        "Please add an address"
+                                                        :
+                                                        "Please select an address"
+                                                }
+                                            </h2>
+                                        </>
+                                    }
                                 </div>
                             }
                         </div>
@@ -244,7 +250,7 @@ export default function Checkout({ products }) {
                     </div>
                 </div>
             </div>
-            <Button size="lg" disabled={!paymentMode || !selectedAddress || isLoading} onClick={handlePlaceOrder}>
+            <Button size="lg" disabled={!paymentMode || !selectedAddress || isLoading || isDataLoading} onClick={handlePlaceOrder}>
                 Place Order
             </Button>
         </div>
