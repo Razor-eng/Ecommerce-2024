@@ -105,13 +105,13 @@ export default function CollectionSlider({ collections }) {
                                     </div>
                                     <div>
                                         <Image
-                                            className="h-[5rem] md:h-[9rem]"
                                             src={collection?.imageURL}
                                             blurDataURL={collection?.imageURL}
                                             alt="collection"
                                             height={1000}
                                             width={1000}
                                             priority={true}
+                                            className="h-[5rem] md:h-[9rem] w-fit"
                                         />
                                     </div>
                                 </div>

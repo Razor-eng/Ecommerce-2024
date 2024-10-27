@@ -58,7 +58,7 @@ export default function BrandSlider({ brands }) {
                                 <div className="px-4">
                                     <div className="md:size-48 size-36 w-full rounded-lg p-2 md:p-5 border overflow-hidden bg-red-50">
                                         <Image
-                                            className="h-full w-full object-contain"
+                                            className="h-full w-fit object-contain"
                                             alt="image"
                                             src={brand?.imageURL}
                                             blurDataURL={brand?.imageURL}
@@ -78,13 +78,13 @@ export default function BrandSlider({ brands }) {
                                 <div className="px-4">
                                     <div className="md:size-48 size-36 w-full rounded-lg p-2 md:p-5 border overflow-hidden bg-red-50">
                                         <Image
-                                            className="h-full w-full object-contain"
                                             alt="image"
                                             src={brand?.imageURL}
                                             blurDataURL={brand?.imageURL}
                                             height={1000}
                                             width={1000}
                                             priority={true}
+                                            className="h-full w-fit object-contain"
                                         />
                                     </div>
                                 </div>

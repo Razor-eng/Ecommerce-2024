@@ -29,7 +29,9 @@ export default function FavoritePage() {
                             height={1000}
                             width={1000}
                             priority={true}
-                            alt="empty" className="h-[200px]" />
+                            alt="empty"
+                            className="h-[200px] w-fit"
+                        />
                     </div>
                     <h1 className="text-zinc-600 font-semibold">
                         Please Add Products To Favorites

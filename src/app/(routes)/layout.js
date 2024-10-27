@@ -7,7 +7,7 @@ import AuthContextProvider from "@/context/AuthContext";
 export default function DashboardLayout({ children }) {
     return (
         <AuthContextProvider>
-            <div className="w-screen h-screen overflow-x-hidden">
+            <div className="w-screen h-screen overflow-x-hidden flex flex-col">
                 <Header />
                 {children}
                 <Footer />

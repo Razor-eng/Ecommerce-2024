@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <footer className='flex flex-col gap-3 w-full bg-blue-50 border-t p-2 md:px-10 md:pt-7 md:pb-3'>
             <div className="w-full flex flex-col md:flex-row md:justify-between gap-3">
-                <Logo />
+                <Logo isFooter />
                 <div className="flex-1 flex flex-col md:flex-row justify-end gap-4">
                     <div className="flex gap-2 items-center">
                         <Phone size={12} className='text-blue-500' />

@@ -1,8 +1,27 @@
-import React from 'react'
+import { cn } from '@/lib/utils'
+import Image from 'next/image'
 
-const Logo = () => {
+const Logo = ({ isFooter = false }) => {
     return (
-        <h2 className="text-2xl md:text-3xl font-extrabold text-rose-400">EasyBuy.</h2>
+        <div className="flex items-center gap-1">
+            <Image
+                src={'/logo.png'}
+                blurDataURL='/logo.png'
+                width={1000}
+                height={1000}
+                priority={true}
+                className={cn(
+                    'w-10',
+                    isFooter && "w-7"
+                )}
+            />
+            <h2 className={cn(
+                "text-[#58AAAF]",
+                isFooter ? "text-xl font-bold" : "sm:text-2xl font-semibold hidden sm:block"
+            )}>
+                EasyBuyy
+            </h2>
+        </div>
     )
 }
 

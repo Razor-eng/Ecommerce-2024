@@ -6,28 +6,39 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Toggle } from "@/components/ui/toggle"
 import { Sheet, SheetTrigger, SheetContent, SheetTitle, SheetHeader, SheetDescription } from "@/components/ui/sheet"
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Logo from "@/components/Logo";
-import { Contact, FolderHeart, Heart, Home, ShoppingBag, ShoppingCart, Store } from "lucide-react";
+import { Heart, Home, Package, ShoppingBag, ShoppingCart } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { UserButton } from "@/app/admin/_components/UserButton";
 import { useUser } from "@/lib/firestore/user/read";
 import Badge from "@/components/Badge";
 import { useAdmin } from "@/lib/firestore/admins/read";
+import { useState } from "react";
 
 export default function Header() {
+    const HeaderItems = [
+        { title: "Home", href: "/dashboard", icon: <Home /> },
+        { title: "Favorites", href: "/favorites", icon: <Heart /> },
+        { title: "Cart", href: "/cart", icon: <ShoppingBag /> },
+        { title: "Orders", href: "/orders", icon: <Package /> },
+    ]
+
+    const pathname = usePathname();
+    const router = useRouter();
+
+    const [searchTerm, setSearchTerm] = useState('');
     const { user, isLoading } = useAuth();
     const { data: isAdmin } = useAdmin({ email: user?.email });
     const { data } = useUser({ uid: user?.uid });
-    const HeaderItems = [
-        { title: "Home", href: "/dashboard", icon: <Home /> },
-        // { title: "About", href: "/about", icon: <Store /> },
-        // { title: "Contact", href: "/contact", icon: <Contact /> },
-        { title: "Favorites", href: "/favorites", icon: <FolderHeart /> },
-        { title: "Cart", href: "/cart", icon: <ShoppingBag /> },
-    ]
-    const pathname = usePathname();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (searchTerm) {
+            router.push(`/search/${searchTerm}`);
+        }
+    }
 
     return (
         <header className="w-full border-b bg-white dark:border-gray-800 dark:bg-gray-950 z-40 sticky top-0 shadow-sm">
@@ -82,26 +93,6 @@ export default function Header() {
                         <Logo />
                     </Link>
                 </div>
-                {/* <nav className="hidden items-center gap-4 text-sm font-medium md:flex">
-                    {HeaderItems.map((item, id) => {
-                        const isActive = pathname === item.href;
-                        if (id < 3) {
-                            return (
-                                <Button key={id} asChild variant={cn(isActive ? "secondary" : "ghost")} className="text-base px-7">
-                                    <Link
-                                        href={item.href}
-                                        className="text-gray-500 hover:text-gray-900 px-2 text-[15px] dark:text-gray-400 dark:hover:text-gray-50"
-                                        prefetch={false}
-                                    >
-                                        {item.title}
-                                    </Link>
-                                </Button>
-                            )
-                        } else {
-                            return null;
-                        }
-                    })}
-                </nav> */}
                 <div className="flex items-center gap-1 md:gap-2">
                     <div className="hidden md:block">
                         {isAdmin ?
@@ -124,10 +115,10 @@ export default function Header() {
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className="w-[300px] p-4">
-                            <div className="relative">
+                            <form onSubmit={handleSubmit} className="relative">
                                 <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
-                                <Input type="search" placeholder="Search..." className="pl-8 w-full" />
-                            </div>
+                                <Input type="search" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="Search..." className="w-full" />
+                            </form>
                         </DropdownMenuContent>
                     </DropdownMenu>
                     <DropdownMenu>
@@ -137,11 +128,11 @@ export default function Header() {
                                 <span className="sr-only">Search</span>
                             </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent className="w-[300px] p-4">
-                            <div className="relative">
+                        <DropdownMenuContent className="min-w-[300px] p-4">
+                            <form onSubmit={handleSubmit} className="relative">
                                 <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
-                                <Input type="search" placeholder="Search..." className="pl-8 w-full" />
-                            </div>
+                                <Input type="search" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="Search..." className="pl-8 w-full h-full" />
+                            </form>
                         </DropdownMenuContent>
                     </DropdownMenu>
                     <Link href={'/favorites'}>
