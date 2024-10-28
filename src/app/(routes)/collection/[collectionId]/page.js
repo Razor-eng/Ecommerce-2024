@@ -8,7 +8,7 @@ const CollectionPage = async ({ params }) => {
     const collection = await getCollection({ id: collectionId });
 
     return (
-        <div className="flex flex-col gap-4 md:gap-10 p-2 md:p-5">
+        <div className="flex flex-col gap-4 md:gap-10 p-2 md:p-5 flex-1">
             <div className="flex flex-col">
                 <div className="w-full flex justify-center">
                     <Image

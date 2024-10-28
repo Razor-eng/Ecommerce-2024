@@ -17,7 +17,7 @@ const UserOrdersPage = () => {
     }
 
     return (
-        <main className="p-2 md:p-5 flex flex-col gap-3 h-full">
+        <main className="p-2 md:p-5 flex flex-col gap-3 h-full flex-1">
             <div className="flex items-center justify-between px-2 mt-2 md:mt-0">
                 <h1 className="text-2xl md:text-3xl text-center font-semibold">My Orders</h1>
             </div>

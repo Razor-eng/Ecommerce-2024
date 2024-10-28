@@ -5,7 +5,7 @@ import React from 'react'
 
 export default function CheckoutFail() {
     return (
-        <div className='h-full flex flex-col justify-center items-center'>
+        <div className='h-full flex flex-col justify-center items-center flex-1'>
             <div className="flex justify-center items-center">
                 <Image
                     src="/fail-purchase.png"

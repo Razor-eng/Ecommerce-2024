@@ -8,6 +8,7 @@ import { ProductsGridView } from "@/components/Products";
 import CustomerReview from "./_components/CustomerReview";
 import BrandSlider from "./_components/BrandSlider";
 import { getBrands } from "@/lib/firestore/brands/read_server";
+import DottedSeparator from "@/components/DottedSeparator";
 
 export default async function Home() {
   const [
@@ -25,12 +26,15 @@ export default async function Home() {
   ]);
 
   return (
-    <main className="flex flex-col gap-6">
+    <main className="flex flex-col gap-4 flex-1">
       <FeaturedProductSlider featuredProducts={JSON.parse(JSON.stringify(featuredProducts))} />
       <CollectionSlider collections={JSON.parse(JSON.stringify(collections))} />
+      <DottedSeparator />
       <CategorySlider categories={JSON.parse(JSON.stringify(categories))} />
+      <DottedSeparator />
       <ProductsGridView products={JSON.parse(JSON.stringify(products))} />
-      <CustomerReview />
+      <DottedSeparator />
+      {/* <CustomerReview /> */}
       <BrandSlider brands={JSON.parse(JSON.stringify(brands))} />
     </main>
   );

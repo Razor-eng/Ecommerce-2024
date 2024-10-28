@@ -28,3 +28,9 @@ export const getProductsByCategory = async ({ categoryId }) => {
 
     return list.docs.map((snap) => snap.data());
 }
+
+export const getProductsByBrand = async ({ brandId }) => {
+    const list = await getDocs(query(collection(db, 'products'), orderBy("timestampCreate", "desc"), where("brandId", "==", brandId)));
+
+    return list.docs.map((snap) => snap.data());
+}

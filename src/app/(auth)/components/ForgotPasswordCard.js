@@ -39,7 +39,7 @@ const ForgotPasswordCard = ({ routePage }) => {
     }
 
     return (
-        <Card className="max-w-md w-full p-4 py-6">
+        <Card className="max-w-md w-full p-4 py-6 h-full md:h-auto">
             <CardHeader className="space-y-1">
                 <CardTitle className="text-2xl font-bold text-center">Reset Password</CardTitle>
                 <CardDescription className="text-center">Enter your email to receive a password rest link.</CardDescription>

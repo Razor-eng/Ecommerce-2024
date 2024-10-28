@@ -65,7 +65,7 @@ const SignInCard = ({ routePage }) => {
     }
 
     return (
-        <Card className="max-w-md w-full p-4 py-6">
+        <Card className="max-w-md w-full p-4 py-6 h-full md:h-auto">
             <CardHeader className="space-y-1">
                 <CardTitle className="text-2xl font-bold text-center">Sign In</CardTitle>
                 <CardDescription>Enter your email and password to login to your account</CardDescription>

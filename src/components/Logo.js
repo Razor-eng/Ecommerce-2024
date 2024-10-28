@@ -7,6 +7,7 @@ const Logo = ({ isFooter = false }) => {
             <Image
                 src={'/logo.png'}
                 blurDataURL='/logo.png'
+                alt='logo'
                 width={1000}
                 height={1000}
                 priority={true}

@@ -18,7 +18,7 @@ export default function FavoritePage() {
     }
 
     return (
-        <main className="p-2 md:p-5 flex flex-col gap-3 items-center">
+        <main className="p-2 md:p-5 flex flex-col gap-3 items-center flex-1">
             <h1 className="md:text-4xl text-2xl font-semibold text-center">Favorites</h1>
             {(!data?.favorites || data?.favorites?.length === 0) ? (
                 <div className="flex flex-col gap-5 justify-center items-center h-full w-full py-20">
