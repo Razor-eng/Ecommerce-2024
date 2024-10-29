@@ -27,7 +27,7 @@ export default function CountMeter() {
 
 function Card({ imgURL, title, value }) {
     return (
-        <div className="flex justify-between items-center px-4 py-2 bg-white shadow border rounded-xl">
+        <div className="flex justify-between items-center px-4 py-2 bg-white dark:bg-zinc-900 shadow border rounded-xl">
             <div className="flex flex-col justify-between">
                 <h1 className="text-lg font-semibold">{title}</h1>
                 <h1 className="text-xl md:text-2xl text-zinc-500">{value}</h1>

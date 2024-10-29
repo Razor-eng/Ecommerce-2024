@@ -1,3 +1,4 @@
+import { Provider } from "@/providers/theme-provider";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 
@@ -9,9 +10,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true}>
-        <Toaster />
-        {children}
+      <body suppressContentEditableWarning={true} suppressHydrationWarning={true}>
+        <Provider>
+          <Toaster />
+          {children}
+        </Provider>
       </body>
     </html>
   );

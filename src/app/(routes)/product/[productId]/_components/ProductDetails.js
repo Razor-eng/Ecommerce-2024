@@ -36,7 +36,7 @@ async function Category({ categoryId }) {
     const category = await getCategory({ id: categoryId })
     return (
         <Link prefetch={false} href={`/category/${categoryId}`}>
-            <div className="flex items-center gap-1 border px-3 py-2 rounded-lg bg-gray-50">
+            <div className="flex items-center dark:bg-gray-700 gap-1 border px-3 py-2 rounded-lg bg-gray-50">
                 <Image
                     src={category?.imageURL}
                     blurDataURL={category?.imageURL}
@@ -56,7 +56,7 @@ async function Brand({ brandId }) {
     const brand = await getBrand({ id: brandId })
     return (
         <Link prefetch={false} href={`/brand/${brandId}`}>
-            <div className="flex items-center gap-1 border px-3 py-2 rounded-lg bg-gray-50">
+            <div className="flex items-center dark:bg-gray-700 gap-1 border px-3 py-2 rounded-lg bg-gray-50">
                 <Image
                     height={1000}
                     width={1000}

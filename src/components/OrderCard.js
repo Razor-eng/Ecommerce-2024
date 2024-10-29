@@ -9,10 +9,10 @@ export default function OrderCard({ id, orderId }) {
     const paymentMode = order?.paymentMode ?? "cod";
 
     return (
-        <div className="flex-1 h-full flex flex-col gap-2 bg-zinc-100 border rounded-lg p-3 md:p-4">
+        <div className="flex-1 h-full flex flex-col gap-2 bg-zinc-100 dark:bg-zinc-900 border rounded-lg p-3 md:p-4">
             <div className="grid items-center grid-cols-9 gap-2 max-w-full md:max-w-96">
                 {id >= 0 ?
-                    <h2 className="font-semibold text-sm bg-zinc-200 rounded-sm flex items-center justify-center p-1 px-3">
+                    <h2 className="font-semibold text-sm bg-zinc-200 dark:bg-zinc-800 rounded-sm flex items-center justify-center p-1 px-3">
                         {id + 1}
                     </h2>
                     : null

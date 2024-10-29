@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useAuth } from "@/context/AuthContext";
-import { useProduct } from "@/lib/firestore/products/read";
 import { addReview } from "@/lib/firestore/review/write";
 import { Rating } from "@mui/material";
 import { useState } from "react";
@@ -15,11 +14,6 @@ export default function ProductAddReview({ productId }) {
     const [review, setReview] = useState('');
     const [rating, setRating] = useState(2.5);
     const [isLoading, setIsLoading] = useState(false);
-    const { data: product } = useProduct({ productId: productId });
-
-    if (!user || !product) {
-        return null;
-    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();

@@ -21,7 +21,7 @@ export default function FeaturedProductSlider({ featuredProducts }) {
             <Slider {...settings}>
                 {featuredProducts?.map((product, id) => (
                     <div key={id}>
-                        <div className="flex flex-col-reverse md:flex-row gap-4 bg-[#f8f8f8] p-5 md:px-24 md:py-20 w-full">
+                        <div className="flex flex-col-reverse md:flex-row gap-4 bg-[#f8f8f8] dark:bg-gray-900 p-5 md:px-24 md:py-20 w-full">
                             <div className="flex-1 flex flex-col gap-4 md:gap-10">
                                 <h2 className="text-zinc-500 text-sm md:text-base">NEW FASHION</h2>
                                 <div className="flex flex-col gap-3 md:gap-4">

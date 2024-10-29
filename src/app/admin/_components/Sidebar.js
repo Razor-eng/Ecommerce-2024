@@ -51,8 +51,8 @@ export default function Sidebar() {
                                 return (
                                     <Link href={item.link} key={id}>
                                         <li className={cn(
-                                            "flex items-center gap-2 px-10 py-3 rounded-lg font-semibold text-zinc-500 hover:bg-zinc-200 transition",
-                                            isActive && "bg-zinc-300 font-semibold text-zinc-900 hover:bg-zinc-300"
+                                            "flex items-center gap-2 px-10 py-3 rounded-lg font-semibold text-zinc-500 hover:bg-zinc-200 dark:hover:bg-gray-600 dark:hover:text-gray-400 transition",
+                                            isActive && "bg-zinc-300 dark:bg-gray-700 dark:text-white font-semibold text-zinc-900 hover:bg-zinc-300 dark:hover:bg-gray-600"
                                         )}
                                         >
                                             <item.Icon className="h-5 w-5" /> {item.title}

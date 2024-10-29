@@ -44,7 +44,7 @@ export function UserButton() {
                 <Button variant="outline" className="relative h-10 w-10 rounded-full">
                     <Avatar className="h-10 w-10">
                         <AvatarImage src={user?.photoURL} alt="User Image" />
-                        <AvatarFallback className="text-lg font-semibold bg-zinc-200">
+                        <AvatarFallback className="text-lg font-semibold bg-zinc-200 dark:bg-zinc-700">
                             {avatarFallback}
                         </AvatarFallback>
                     </Avatar>
@@ -54,7 +54,7 @@ export function UserButton() {
                 <DropdownMenuLabel className="font-normal flex flex-col gap-3 items-center">
                     <Avatar className="h-14 w-14">
                         <AvatarImage src={user?.photoURL} alt="User Image" />
-                        <AvatarFallback className="text-xl font-semibold bg-zinc-200">
+                        <AvatarFallback className="text-xl font-semibold bg-zinc-200 dark:bg-zinc-700">
                             {avatarFallback}
                         </AvatarFallback>
                     </Avatar>

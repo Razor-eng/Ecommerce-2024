@@ -1,10 +1,9 @@
 "use client";
 
 import Link from "next/link"
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent } from "@/components/ui/dropdown-menu"
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Toggle } from "@/components/ui/toggle"
 import { Sheet, SheetTrigger, SheetContent, SheetTitle, SheetHeader, SheetDescription } from "@/components/ui/sheet"
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -16,6 +15,8 @@ import { useUser } from "@/lib/firestore/user/read";
 import Badge from "@/components/Badge";
 import { useAdmin } from "@/lib/firestore/admins/read";
 import { useState } from "react";
+import { useTheme } from "next-themes";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 export default function Header() {
     const HeaderItems = [
@@ -27,6 +28,7 @@ export default function Header() {
 
     const pathname = usePathname();
     const router = useRouter();
+    const { setTheme, theme } = useTheme();
 
     const [searchTerm, setSearchTerm] = useState('');
     const { user, isLoading } = useAuth();
@@ -109,7 +111,7 @@ export default function Header() {
                     </div>
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                            <Button variant="secondary" className="md:hidden">
+                            <Button variant="ghost" className="md:hidden">
                                 <SearchIcon className="size-5 text-gray-500 dark:text-gray-400" />
                                 <span className="sr-only">Search</span>
                             </Button>
@@ -117,7 +119,7 @@ export default function Header() {
                         <DropdownMenuContent className="w-[300px] p-4">
                             <form onSubmit={handleSubmit} className="relative">
                                 <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
-                                <Input type="search" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="Search..." className="w-full" />
+                                <Input type="search" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="Search..." className="pl-8 w-full" />
                             </form>
                         </DropdownMenuContent>
                     </DropdownMenu>
@@ -149,9 +151,7 @@ export default function Header() {
                             </Button>
                         </Badge>
                     </Link>
-                    <Toggle aria-label="Toggle dark mode" className="rounded-full hidden md:block">
-                        <MoonIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-                    </Toggle>
+                    <ThemeSwitcher />
                     {user || isLoading ?
                         <UserButton />
                         :
@@ -193,24 +193,24 @@ function MenuIcon(props) {
 }
 
 
-function MoonIcon(props) {
-    return (
-        <svg
-            {...props}
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-        >
-            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-        </svg>
-    )
-}
+// function MoonIcon(props) {
+//     return (
+//         <svg
+//             {...props}
+//             xmlns="http://www.w3.org/2000/svg"
+//             width="24"
+//             height="24"
+//             viewBox="0 0 24 24"
+//             fill="none"
+//             stroke="currentColor"
+//             strokeWidth="2"
+//             strokeLinecap="round"
+//             strokeLinejoin="round"
+//         >
+//             <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+//         </svg>
+//     )
+// }
 
 function SearchIcon(props) {
     return (

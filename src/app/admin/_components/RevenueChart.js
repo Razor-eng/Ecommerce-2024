@@ -43,7 +43,7 @@ const RevenueChart = ({ items }) => {
     }
 
     return (
-        <section className="bg-white p-2 md:p-5 rounded-xl shadow w-full h-full">
+        <section className="bg-white dark:bg-zinc-800 p-2 md:p-5 rounded-xl shadow w-full h-full">
             <Line data={data} options={options} />
         </section>
     )

@@ -32,7 +32,7 @@ const AdminDashboardPage = () => {
 
     return (
         <div className="sm:p-5 h-full">
-            <div className="bg-white h-full p-2 sm:p-5 rounded-xl flex flex-col">
+            <div className="bg-white dark:bg-zinc-900 h-full p-2 sm:p-5 rounded-xl flex flex-col">
                 <div className="px-2 mt-2 md:mt-0">
                     <h1 className="text-xl font-semibold">Dashboard</h1>
                 </div>

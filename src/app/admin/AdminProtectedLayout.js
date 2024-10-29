@@ -30,7 +30,7 @@ const AdminProtectedLayout = ({ children }) => {
             </div>
             <section className="flex-1 flex flex-col z-0">
                 <Header />
-                <section className="flex-1 bg-[#eff3f4]">
+                <section className="flex-1 bg-[#eff3f4] dark:bg-gray-900">
                     {children}
                 </section>
             </section>
