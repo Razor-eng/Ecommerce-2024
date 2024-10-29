@@ -15,7 +15,6 @@ import { useUser } from "@/lib/firestore/user/read";
 import Badge from "@/components/Badge";
 import { useAdmin } from "@/lib/firestore/admins/read";
 import { useState } from "react";
-import { useTheme } from "next-themes";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 export default function Header() {
@@ -28,8 +27,6 @@ export default function Header() {
 
     const pathname = usePathname();
     const router = useRouter();
-    const { setTheme, theme } = useTheme();
-
     const [searchTerm, setSearchTerm] = useState('');
     const { user, isLoading } = useAuth();
     const { data: isAdmin } = useAdmin({ email: user?.email });
